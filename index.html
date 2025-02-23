@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link rel="stylesheet" href="./assets/styles/styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>TETRIS!</title>
@@ -35,6 +35,13 @@
             </ul>
           </div>
         </div>
+        <div class="font-sans">
+          <p>CONTROLS</p>
+          <p>Press SPACE to start</p>
+          <p>Arrow keys to move</p>
+          <p>VIM keys (H,J,L) also move</p>
+          <p>A and D rotate</p>
+        </div>
       </div>
 
       <div class="flex flex-col" id="center">
@@ -42,10 +49,17 @@
           <p>LINES-<span id="lines">000</span></p>
         </div>
         <canvas class="border-cyan-500 border-4" id="gamearena" height="600" width="300"></canvas>
+        <div class="font-sans">
+          <p><a href="https://andrewthecoder.xyz">Andrew S Erwin</a></p>
+          <p><a class="underline" 
+            href="https://github.com/andrewthecodertx/typescript-tetris"
+            target="_blank">
+            source code</a></p>
+        </div>
       </div>
 
       <div class="w-[260px]" id="right">
-        <div id="scoreboard">
+          <div id="scoreboard">
           <div>
             <p>Score</p>
             <span id="score">0</span>
