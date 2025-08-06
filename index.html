@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
     <link rel="stylesheet" href="./assets/styles/styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A Tetris clone written in TypeScript with a retro aesthetic.">
+    <meta name="keywords" content="Tetris, TypeScript, game, retro, clone">
+    <meta name="author" content="Andrew S Erwin">
 
-    <title>TETRIS!</title>
+  <title>TETRIS!</title>
   </head>
   <body class="font-retro">
     <h1 class="text-red-300">TETRIS</h1>
@@ -27,6 +30,7 @@
             <ul></ul>
           </div>
         </div>
+
         <div class="font-sans">
           <p>CONTROLS</p>
           <p>Press SPACE to start</p>
@@ -53,16 +57,16 @@
       <div class="w-[260px]" id="right">
           <div id="scoreboard">
           <div>
-            <p>Score</p>
+            <p>SCORE</p>
             <span id="score">0</span>
           </div>
           <div>
-            <p>Level</p>
-            <span id="level">1</span>
+            <p>NEXT</p>
+            <canvas id="bullpen" height="80" width="80"></canvas>
           </div>
           <div>
-            <p>Next</p>
-            <canvas id="bullpen" height="80" width="80"></canvas>
+            <p>LEVEL</p>
+            <span id="level">00</span>
           </div>
         </div>
       </div>
