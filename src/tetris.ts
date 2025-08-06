@@ -19,7 +19,8 @@ bpctx.scale(20, 20)
 const gamepiece: Piece = { position: { x: 0, y: 0 }, matrix: null }
 const bullpenpiece: Piece = { position: { x: 0, y: 0 }, matrix: null }
 const canvasSpace = (height: number, width: number): number[][] =>
-  Array.from({ length: height }, () => new Array(width).fill(0))
+  Array.from({ length: height }, (): number[] =>
+    new Array(width).fill(0))
 const gamearena: number[][] = canvasSpace(20, 10)
 const bullpen: number[][] = canvasSpace(4, 2)
 const colors: (string | null)[] = [
@@ -92,17 +93,17 @@ function playercontrols(event: KeyboardEvent): void {
 }
 
 function assignPiece(): string {
-  const pieces = "TJLOSZI"
+  let pieces = "TJLOSZI"
   return pieces.charAt(Math.floor(Math.random() * pieces.length))
 }
 
 function clearRow(): void {
-  const rows = 1;
+  let rows = 1;
   loop: for (let y = gamearena.length - 1; y > 0; --y) {
     for (let x = 0; x < gamearena[y].length; ++x) {
       if (gamearena[y][x] === 0) continue loop
     }
-    const row = gamearena.splice(y, 1)[0].fill(0);
+    let row = gamearena.splice(y, 1)[0].fill(0);
     gamearena.unshift(row)
     ++y
     updateScore(rows)
@@ -136,9 +137,9 @@ function collision(): boolean {
 }
 
 function displayScore(): void {
-  const scoreElement = document.getElementById("score")
-  const levelElement = document.getElementById("level")
-  const linesElement = document.getElementById("lines")
+  let scoreElement = document.getElementById("score")
+  let levelElement = document.getElementById("level")
+  let linesElement = document.getElementById("lines")
 
   if (scoreElement && levelElement && linesElement) {
     scoreElement.innerText = score.toString()
@@ -148,13 +149,14 @@ function displayScore(): void {
 }
 
 function updateStatistics(): void {
-  const statsElement = document.getElementById("stats")
+  let statsElement = document.getElementById("stats")
   if (!statsElement) return
 
   statsElement.innerHTML = `
     <ul>
       ${Object.entries(pieceStats)
-      .map(([shape, count]) => `<li>${shape}: ${count}</li>`)
+      .map(([shape, count]: [string, number]): string =>
+        `<li>${shape}: ${count}</li>`)
       .join('')}
     </ul>
   `
@@ -174,8 +176,8 @@ function dropShape(): void {
 }
 
 function fuse(): void {
-  gamepiece.matrix?.forEach((row, y) =>
-    row.forEach((value, x) => {
+  gamepiece.matrix?.forEach((row: number[], y: number): void =>
+    row.forEach((value: number, x: number): void => {
       if (value !== 0) {
         gamearena[y + gamepiece.position.y][x + gamepiece.position.x] = value
       }
@@ -240,7 +242,7 @@ function gamePiece(shape: string): number[][] | null {
 }
 
 function initiateNewGamePiece(shape: string): void {
-  const matrix = gamePiece(shape)
+  let matrix = gamePiece(shape)
   if (!matrix) throw new Error('invalid shape provided')
 
   pieceStats[shape] = (pieceStats[shape] || 0) + 1
@@ -261,7 +263,7 @@ function loadBullpen(): void {
   bpctx.fillStyle = "rgba(255, 255, 255, 0.5)"
   bpctx.fillRect(0, 0, bpcanvas.width, bpcanvas.height)
 
-  const matrix = gamePiece(standby)
+  let matrix = gamePiece(standby)
   if (!matrix) throw new Error('invalid shape provided')
 
   bullpenpiece.matrix = matrix
@@ -286,8 +288,8 @@ function renderElement(
 ): void {
   if (!element) return
 
-  element.forEach((row, ypos) =>
-    row.forEach((color, xpos) => {
+  element.forEach((row: number[], ypos: number): void =>
+    row.forEach((color: number, xpos: number): void => {
       if (color !== 0) {
         context.drawImage(cube, xpos + offset.x, ypos + offset.y, 1, 1)
         context.fillStyle = `rgba(${colors[color]}, 0.4)`
@@ -298,11 +300,12 @@ function renderElement(
 }
 
 function rotate(shape: number[][], direction: number): number[][] {
-  const rotatedshape = shape.map(row => [...row])
+  let rotatedshape = shape.map(row => [...row])
 
   for (let y = 0; y < rotatedshape.length; ++y) {
     for (let x = 0; x < y; ++x) {
-      [rotatedshape[x][y], rotatedshape[y][x]] = [rotatedshape[y][x], rotatedshape[x][y]]
+      [rotatedshape[x][y], rotatedshape[y][x]] =
+        [rotatedshape[y][x], rotatedshape[x][y]]
     }
   }
 
@@ -316,10 +319,10 @@ function rotate(shape: number[][], direction: number): number[][] {
 }
 
 function rotateShape(direction: number): void {
-  const rotatedmatrix = rotate(gamepiece.matrix!, direction)
+  let rotatedmatrix = rotate(gamepiece.matrix!, direction)
   let offset = 1;
 
-  const matrix = gamepiece.matrix
+  let matrix = gamepiece.matrix
   gamepiece.matrix = rotatedmatrix
 
   while (collision()) {
@@ -334,7 +337,7 @@ function rotateShape(direction: number): void {
 }
 
 function run(t = 0): void {
-  const delta = t - time
+  let delta = t - time
   dropCounter += delta
 
   if (dropCounter > dropSpeed) {
