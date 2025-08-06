@@ -1,8 +1,16 @@
 import { GameState } from './GameState.ts'
 import type { Piece, Position } from './GameState.ts'
+import cubeUrl from '/images/cube.png'
+import iUrl from "/images/I.png";
+import jUrl from "/images/J.png";
+import lUrl from "/images/L.png";
+import oUrl from "/images/O.png";
+import sUrl from "/images/S.png";
+import tUrl from "/images/T.png";
+import zUrl from "/images/Z.png";
 
 const cube = new Image()
-cube.src = '/images/cube.png'
+cube.src = cubeUrl
 
 const colors: (string | null)[] = [
   null,
@@ -193,17 +201,6 @@ function loadBullpen(): void {
 }
 
 function displayScore(): void {
-  const stats = gameState.getStats()
-  const scoreElement = document.getElementById("score")
-  const levelElement = document.getElementById("level")
-  const linesElement = document.getElementById("lines")
-
-  if (scoreElement && levelElement && linesElement) {
-    scoreElement.innerText = stats.score.toString()
-    levelElement.innerText = stats.level.toString()
-    linesElement.innerText = stats.lines.toString()
-  }
-}
 
 function updateStatistics(): void {
   const statsElement = document.getElementById("stats")
@@ -211,13 +208,13 @@ function updateStatistics(): void {
 
   const { pieceStats } = gameState.getStats()
   const pieceImages: Record<string, string> = {
-    I: "/images/I.png",
-    J: "/images/J.png",
-    L: "/images/L.png",
-    O: "/images/O.png",
-    S: "/images/S.png",
-    T: "/images/T.png",
-    Z: "/images/Z.png",
+    I: iUrl,
+    J: jUrl,
+    L: lUrl,
+    O: oUrl,
+    S: sUrl,
+    T: tUrl,
+    Z: zUrl,
   };
   statsElement.innerHTML = `
     <ul>
