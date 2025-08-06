@@ -1,9 +1,8 @@
-import cubesource from '../assets/images/cube.png'
 import { GameState } from './GameState.ts'
 import type { Piece, Position } from './GameState.ts'
 
 const cube = new Image()
-cube.src = cubesource
+cube.src = '/images/cube.png'
 
 const colors: (string | null)[] = [
   null,
@@ -212,13 +211,13 @@ function updateStatistics(): void {
 
   const { pieceStats } = gameState.getStats()
   const pieceImages: Record<string, string> = {
-    I: "/assets/images/I.png",
-    J: "/assets/images/J.png",
-    L: "/assets/images/L.png",
-    O: "/assets/images/O.png",
-    S: "/assets/images/S.png",
-    T: "/assets/images/T.png",
-    Z: "/assets/images/Z.png",
+    I: "/images/I.png",
+    J: "/images/J.png",
+    L: "/images/L.png",
+    O: "/images/O.png",
+    S: "/images/S.png",
+    T: "/images/T.png",
+    Z: "/images/Z.png",
   };
   statsElement.innerHTML = `
     <ul>
