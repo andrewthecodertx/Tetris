@@ -18,20 +18,18 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Test
+        run: |
+          npm install
+          npm test
+
+      - name: Build
+        run: |
+          npm install
+          npm run build
+
       - name: Copy files
         run: |
-          scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/tetris/
+          scp -o StrictHostKeyChecking=no -r ./dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/andrewthecoder_com/tetris/
 
-      - name: Send commands vis SSHPASS
-        run: |
-          sshpass ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} <<'ENDSSH'
-          export NVM_DIR="$HOME/.nvm"
-          export PM2_DIR="$NVM_DIR/versions/node/v20.18.1/lib/node_modules/pm2/bin"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm use 20
-          cd /var/www/tetris
-          rm -rf node_modules
-          npm install
-          npm run astro build
-          $PM2_DIR/pm2 restart tetris
-          ENDSSH
+      
