@@ -201,6 +201,17 @@ function loadBullpen(): void {
 }
 
 function displayScore(): void {
+  const stats = gameState.getStats()
+  const scoreElement = document.getElementById("score")
+  const levelElement = document.getElementById("level")
+  const linesElement = document.getElementById("lines")
+
+  if (scoreElement && levelElement && linesElement) {
+    scoreElement.innerText = stats.score.toString()
+    levelElement.innerText = stats.level.toString()
+    linesElement.innerText = stats.lines.toString()
+  }
+}
 
 function updateStatistics(): void {
   const statsElement = document.getElementById("stats")
