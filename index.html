@@ -14,7 +14,7 @@
   </head>
   <body class="font-retro">
     <h1 class="text-red-300">TETRIS</h1>
-    <div class="flex w-[900px] p-4 bg-zinc-50 justify-around" id="tetris">
+    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 bg-zinc-50 justify-around" id="tetris">
 
       <div class="flex flex-col justify-items-center w-[260px]" id="left">
 
@@ -73,5 +73,11 @@
 
     </div>
     <script type="module" src="src/main.ts"></script>
+    <div id="mobile-controls" class="md:hidden flex justify-center mt-4">
+        <button id="left-btn" class="p-4 mx-2 bg-gray-300 rounded">Left</button>
+        <button id="right-btn" class="p-4 mx-2 bg-gray-300 rounded">Right</button>
+        <button id="rotate-btn" class="p-4 mx-2 bg-gray-300 rounded">Rotate</button>
+        <button id="down-btn" class="p-4 mx-2 bg-gray-300 rounded">Down</button>
+    </div>
   </body>
 </html>

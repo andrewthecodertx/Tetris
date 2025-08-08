@@ -1,5 +1,9 @@
 export class InputHandler {
     private keydownHandler: (event: KeyboardEvent) => void;
+    private shiftLeftHandler: () => void;
+    private shiftRightHandler: () => void;
+    private rotateHandler: () => void;
+    private dropHandler: () => void;
 
     constructor(
         private shiftShape: (offset: number) => void,
@@ -9,6 +13,25 @@ export class InputHandler {
     ) {
         this.keydownHandler = this.kbcontrols.bind(this);
         document.addEventListener("keydown", this.keydownHandler);
+
+        this.shiftLeftHandler = () => this.shiftShape(-1);
+        this.shiftRightHandler = () => this.shiftShape(1);
+        this.rotateHandler = () => this.rotateShape(1);
+        this.dropHandler = () => this.dropShape();
+    }
+
+    private addTouchControls(): void {
+        document.getElementById('left-btn')?.addEventListener('click', this.shiftLeftHandler);
+        document.getElementById('right-btn')?.addEventListener('click', this.shiftRightHandler);
+        document.getElementById('rotate-btn')?.addEventListener('click', this.rotateHandler);
+        document.getElementById('down-btn')?.addEventListener('click', this.dropHandler);
+    }
+
+    private removeTouchControls(): void {
+        document.getElementById('left-btn')?.removeEventListener('click', this.shiftLeftHandler);
+        document.getElementById('right-btn')?.removeEventListener('click', this.shiftRightHandler);
+        document.getElementById('rotate-btn')?.removeEventListener('click', this.rotateHandler);
+        document.getElementById('down-btn')?.removeEventListener('click', this.dropHandler);
     }
 
     private playercontrols(event: KeyboardEvent): void {
@@ -36,9 +59,7 @@ export class InputHandler {
 
     private kbcontrols(event: KeyboardEvent): void {
         if (event.code === "Space") {
-            document.removeEventListener("keydown", this.keydownHandler);
-            this.keydownHandler = this.playercontrols.bind(this);
-            document.addEventListener("keydown", this.keydownHandler);
+            this.enableGameControls();
             this.startGame();
         }
     }
@@ -47,11 +68,13 @@ export class InputHandler {
         document.removeEventListener("keydown", this.keydownHandler);
         this.keydownHandler = this.playercontrols.bind(this);
         document.addEventListener("keydown", this.keydownHandler);
+        this.addTouchControls();
     }
 
     public disableGameControls(): void {
         document.removeEventListener("keydown", this.keydownHandler);
         this.keydownHandler = this.kbcontrols.bind(this);
         document.addEventListener("keydown", this.keydownHandler);
+        this.removeTouchControls();
     }
 }
