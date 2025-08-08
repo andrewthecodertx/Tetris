@@ -107,7 +107,7 @@ export class GameState {
   }
 
   public fuseGamePiece(): void {
-    if (!this.gamepiece) return
+    if (!this.gamepiece || !this.gamepiece.position) return
 
     this.gamepiece.matrix.forEach((row, y) => {
       row.forEach((value, x) => {
