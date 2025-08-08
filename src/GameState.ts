@@ -107,15 +107,15 @@ export class GameState {
   }
 
   public fuseGamePiece(): void {
-    if (!this.gamepiece || !this.gamepiece.position) return
-
-    this.gamepiece.matrix.forEach((row, y) => {
-      row.forEach((value, x) => {
-        if (value !== 0) {
-          this.gamearena[y + this.gamepiece.position.y][x + this.gamepiece.position.x] = value
-        }
+    if (this.gamepiece && this.gamepiece.position) {
+      this.gamepiece.matrix.forEach((row, y) => {
+        row.forEach((value, x) => {
+          if (value !== 0 && this.gamepiece && this.gamepiece.position) {
+            this.gamearena[y + this.gamepiece.position.y][x + this.gamepiece.position.x] = value
+          }
+        })
       })
-    })
+    }
   }
 
   public clearRows(): number {
