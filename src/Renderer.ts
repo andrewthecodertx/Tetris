@@ -1,4 +1,5 @@
-import type { GameState, Piece, Position } from './GameState.ts';
+import type { GameState, Position } from './GameState.ts';
+import type { Piece } from './Piece.ts';
 import cubeUrl from '/images/cube.png';
 import iUrl from "/images/I.png";
 import jUrl from "/images/J.png";

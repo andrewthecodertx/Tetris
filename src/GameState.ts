@@ -150,6 +150,8 @@ export class GameState {
 
   public reset(): void {
     this.gamearena = this.createCanvas(20, 10);
+    this.gamepiece = null;
+    this.bullpenpiece = null;
     this.stats = {
       score: 0,
       level: 1,
