@@ -25,6 +25,9 @@ export class Game {
         this.dropCounter = 0;
         this.time = 0;
         this.standby = this.gameState.assignPiece();
+
+        this.renderer.redrawCanvases(this.gameState);
+        this.renderer.updateStatistics(this.gameState);
     }
 
     private collision(): boolean {
@@ -109,7 +112,6 @@ export class Game {
                 this.gameState.updateScore(clearedRows);
                 this.renderer.displayScore(this.gameState);
             }
-            this.renderer.updateStatistics(this.gameState);
         }
 
         this.dropCounter = 0;
@@ -117,6 +119,7 @@ export class Game {
 
     private initiateNewGamePiece(shape: string): void {
         this.gameState.updatePieceStats(shape);
+        this.renderer.updateStatistics(this.gameState);
         const newPiece = new Piece(shape, {
             x: Math.floor((this.gameState.getGameArena()[0].length - new Piece(shape, { x: 0, y: 0 }).matrix[0].length) / 2),
             y: 0
@@ -151,10 +154,15 @@ export class Game {
 
     private gameOver(): void {
         cancelAnimationFrame(this.cancelId);
+        this.renderer.drawGameOver();
         this.inputHandler.disableGameControls();
     }
 
     public startGame(): void {
+        this.gameState.reset();
+        this.standby = this.gameState.assignPiece();
+        this.renderer.displayScore(this.gameState);
+        this.renderer.updateStatistics(this.gameState);
         this.initiateNewGamePiece(this.standby);
         this.loadBullpen();
         this.run();

@@ -147,4 +147,23 @@ export class GameState {
   public getDropSpeed(): number {
     return this.stats.dropSpeed
   }
+
+  public reset(): void {
+    this.gamearena = this.createCanvas(20, 10);
+    this.stats = {
+      score: 0,
+      level: 1,
+      lines: 0,
+      dropSpeed: 1000,
+      pieceStats: {
+        I: 0,
+        J: 0,
+        L: 0,
+        O: 0,
+        S: 0,
+        T: 0,
+        Z: 0,
+      }
+    };
+  }
 }

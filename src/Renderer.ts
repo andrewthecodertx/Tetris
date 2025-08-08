@@ -69,7 +69,7 @@ export class Renderer {
 
         this.renderElement(gameState.getGameArena(), { x: 0, y: 0 }, this.ctx);
         const piece = gameState.getGamePiece();
-        if (piece.matrix) {
+        if (piece) {
             this.renderElement(piece.matrix, piece.position, this.ctx);
         }
     }
@@ -80,7 +80,10 @@ export class Renderer {
         this.bpctx.fillRect(0, 0, this.bpctx.canvas.width, this.bpctx.canvas.height);
 
         this.renderElement(gameState.getBullpen(), { x: 0, y: 1 }, this.bpctx);
-        this.renderElement(gameState.getBullpenPiece().matrix, { x: 0, y: 0 }, this.bpctx);
+        const bullpenPiece = gameState.getBullpenPiece();
+        if (bullpenPiece) {
+            this.renderElement(bullpenPiece.matrix, { x: 0, y: 0 }, this.bpctx);
+        }
     }
 
     public displayScore(gameState: GameState): void {
@@ -104,9 +107,18 @@ export class Renderer {
         statsElement.innerHTML = `
             <ul>
                 ${Object.entries(pieceStats)
-                .map(([shape, count]) => `<li><img src="${pieceImages[shape]}" alt="${shape}" width="20" height="20"> ${count}</li>`)
+                .map(([shape, count]) => `<li><img src="${pieceImages[shape]}" alt="${shape}" width="20" height="20"> <span>${count}</span></li>`)
                 .join('')}
             </ul>
         `;
+    }
+
+    public drawGameOver(): void {
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        this.ctx.fillRect(0, 0, 10, 20);
+        this.ctx.font = "1px 'Press Start 2P'";
+        this.ctx.fillStyle = 'white';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText('GAME OVER', 5, 10);
     }
 }

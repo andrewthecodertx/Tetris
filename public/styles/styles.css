@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+#stats li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+#stats li img {
+    margin-right: 1rem;
+}
