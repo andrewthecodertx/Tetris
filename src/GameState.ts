@@ -1,11 +1,8 @@
+import { Piece } from './Piece';
+
 export type Position = {
   x: number
   y: number
-}
-
-export type Piece = {
-  position: Position;
-  matrix: number[][] | null;
 }
 
 export type GameStats = {
@@ -19,16 +16,16 @@ export type GameStats = {
 export class GameState {
   private gamearena: number[][]
   private bullpen: number[][]
-  private gamepiece: Piece
-  private bullpenpiece: Piece
+  private gamepiece: Piece | null
+  private bullpenpiece: Piece | null
   private standbyPiece: string
   private stats: GameStats
 
   constructor() {
     this.gamearena = this.createCanvas(20, 10)
     this.bullpen = this.createCanvas(4, 2)
-    this.gamepiece = { position: { x: 0, y: 0 }, matrix: null }
-    this.bullpenpiece = { position: { x: 0, y: 0 }, matrix: null }
+    this.gamepiece = null
+    this.bullpenpiece = null
     this.standbyPiece = ''
     this.stats = {
       score: 0,
@@ -59,12 +56,12 @@ export class GameState {
     return this.bullpen
   }
 
-  public getGamePiece(): Piece {
-    return { ...this.gamepiece, position: { ...this.gamepiece.position } }
+  public getGamePiece(): Piece | null {
+    return this.gamepiece
   }
 
-  public getBullpenPiece(): Piece {
-    return { ...this.bullpenpiece, position: { ...this.bullpenpiece.position } }
+  public getBullpenPiece(): Piece | null {
+    return this.bullpenpiece
   }
 
   public getStats(): GameStats {
@@ -88,31 +85,29 @@ export class GameState {
     this.stats.pieceStats[piece] = (this.stats.pieceStats[piece] || 0) + 1
   }
 
-  public setGamePiece(piece: Piece): void {
-    this.gamepiece = {
-      position: { ...piece.position },
-      matrix: piece.matrix ? [...piece.matrix.map(row => [...row])] : null
-    }
+  public setGamePiece(piece: Piece | null): void {
+    this.gamepiece = piece
   }
 
-  public setBullpenPiece(piece: Piece): void {
-    this.bullpenpiece = {
-      position: { ...piece.position },
-      matrix: piece.matrix ? [...piece.matrix.map(row => [...row])] : null
-    }
+  public setBullpenPiece(piece: Piece | null): void {
+    this.bullpenpiece = piece
   }
 
   public setGamePiecePosition(position: Position): void {
-    this.gamepiece.position = { ...position }
+    if (this.gamepiece) {
+      this.gamepiece.position = { ...position }
+    }
   }
 
   public moveGamePiece(offset: Position): void {
-    this.gamepiece.position.x += offset.x
-    this.gamepiece.position.y += offset.y
+    if (this.gamepiece) {
+      this.gamepiece.position.x += offset.x
+      this.gamepiece.position.y += offset.y
+    }
   }
 
   public fuseGamePiece(): void {
-    if (!this.gamepiece.matrix) return
+    if (!this.gamepiece) return
 
     this.gamepiece.matrix.forEach((row, y) => {
       row.forEach((value, x) => {
