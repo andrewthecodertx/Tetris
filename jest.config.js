@@ -1,10 +1,11 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} **/
 export default {
-  testEnvironment: "node",
-  testPathIgnorePatterns: ["/node_modules/", "/dist/"],
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json"
-    }
-  }
+    'ts-jest': {
+      tsconfig: 'tsconfig.json',
+    },
+  },
 };
