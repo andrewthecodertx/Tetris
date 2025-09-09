@@ -2,5 +2,7 @@
 
 ## Typescript Implementation
 
-Use BUN! `bun run dev`
-OR! play [HERE](https://tetris.developersandbox.xyz "Play Tetris here!")
+You can run this with your favorite Typescript environment. It has no external
+dependencies.
+
+OR you can play the [LIVE DEMO](https://developersandbox.xyz/tetris/).
