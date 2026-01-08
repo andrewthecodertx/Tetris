@@ -3,41 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="vite.svg" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A Tetris clone written in TypeScript with a retro aesthetic.">
-    <meta name="keywords" content="Tetris, TypeScript, game, retro, clone">
-    <meta name="author" content="Andrew S Erwin">
+    <meta
+      name="description"
+      content="A Tetris clone written in TypeScript with a retro aesthetic."
+    />
+    <meta name="keywords" content="Tetris, TypeScript, game, retro, clone" />
+    <meta name="author" content="Andrew S Erwin" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://developersandbox.xyz/tetris" />
     <meta property="og:title" content="TETRIS" />
-    <meta property="og:description" content="Simple Tetris clone in Typescript" />
-    <meta property="og:image" content="https://developersandbox.xyz/tetris/images/tetris.webp" />
+    <meta
+      property="og:description"
+      content="Simple Tetris clone in Typescript"
+    />
+    <meta
+      property="og:image"
+      content="https://developersandbox.xyz/tetris/images/tetris.webp"
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://developersandbox.xyz/tetris" />
+    <meta
+      property="twitter:url"
+      content="https://developersandbox.xyz/tetris"
+    />
     <meta property="twitter:title" content="TETRIS" />
-    <meta property="twitter:description" content="Simple Tetris clone in Typescript" />
-    <meta property="twitter:image" content="https://developersandbox.xyz/tetris/images/tetris.webp" />
+    <meta
+      property="twitter:description"
+      content="Simple Tetris clone in Typescript"
+    />
+    <meta
+      property="twitter:image"
+      content="https://developersandbox.xyz/tetris/images/tetris.webp"
+    />
 
-  <title>TETRIS!</title>
+    <title>TETRIS!</title>
   </head>
   <body class="font-retro flex flex-col items-center bg-gray-700">
     <h1 class="text-red-300">TETRIS</h1>
-    <div class="flex flex-col md:flex-row w-full max-w-4xl p-4 bg-zinc-50 justify-around" id="tetris">
-
+    <div
+      class="flex flex-col md:flex-row w-full max-w-4xl p-4 bg-zinc-50 justify-around"
+      id="tetris"
+    >
       <div class="flex flex-col justify-items-center w-[260px]" id="left">
-
         <div class="flex justify-center mt-5 mb-9">
-          <span class="bg-black text-white border-4 border-cyan-500 w-fit py-1 px-2 mb-2" id="type">
+          <span
+            class="bg-black text-white border-4 border-cyan-500 w-fit py-1 px-2 mb-2"
+            id="type"
+          >
             <p>A-TYPE</p>
           </span>
         </div>
 
-        <div class="flex flex-col bg-black text-white border-4 border-cyan-500 justify-center p-1">
+        <div
+          class="flex flex-col bg-black text-white border-4 border-cyan-500 justify-center p-1"
+        >
           <p class="justify-center m-auto">STATISTICS</p>
           <div class="p-4 m-auto" id="stats">
             <ul></ul>
@@ -54,14 +81,21 @@
       </div>
 
       <div class="flex flex-col" id="center">
-        <div class="w-full p-2 m-auto flex justify-center border-4 border-cyan-500 bg-black text-white mb-2">
+        <div
+          class="w-full p-2 m-auto flex justify-center border-4 border-cyan-500 bg-black text-white mb-2"
+        >
           <p>LINES-<span id="lines">000</span></p>
         </div>
-        <canvas class="border-cyan-500 border-4" id="gamearena" height="600" width="300"></canvas>
+        <canvas
+          class="border-cyan-500 border-4"
+          id="gamearena"
+          height="600"
+          width="300"
+        ></canvas>
       </div>
 
       <div class="w-[260px]" id="right">
-          <div id="scoreboard">
+        <div id="scoreboard">
           <div>
             <p>SCORE</p>
             <span id="score">0</span>
@@ -79,16 +113,28 @@
 
       <div id="mobile-controls" class="md:hidden flex justify-center mt-4">
         <button id="left-btn" class="p-4 mx-2 bg-gray-300 rounded">Left</button>
-        <button id="right-btn" class="p-4 mx-2 bg-gray-300 rounded">Right</button>
-        <button id="rotate-btn" class="p-4 mx-2 bg-gray-300 rounded">Rotate</button>
+        <button id="right-btn" class="p-4 mx-2 bg-gray-300 rounded">
+          Right
+        </button>
+        <button id="rotate-btn" class="p-4 mx-2 bg-gray-300 rounded">
+          Rotate
+        </button>
         <button id="down-btn" class="p-4 mx-2 bg-gray-300 rounded">Down</button>
       </div>
     </div>
 
     <footer class="font-sans text-white">
       <p>
-        Written by <a href="https://andrewthecoder.com" target="_blank" class="underline">Andrew S Erwin</a>.
-        View the source code on <a href="https://github.com/andrewthecodertx/javascript-game-of-life" target="_blank" class="underline">GitHub</a>.
+        Written by
+        <a href="https://andrewthecoder.com" target="_blank" class="underline"
+          >Andrew S Erwin</a
+        >. View the source code on
+        <a
+          href="https://github.com/andrewthecodertx/Tetris"
+          target="_blank"
+          class="underline"
+          >GitHub</a
+        >.
       </p>
     </footer>
 
