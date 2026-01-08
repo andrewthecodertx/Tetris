@@ -25,4 +25,4 @@ jobs:
 
       - name: Copy files
         run: |
-          scp -o StrictHostKeyChecking=no -r ./dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/developersandbox_xyz/tetris/
+          scp -o StrictHostKeyChecking=no -r ./dist/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/andrewthecoder_com/tetris/
